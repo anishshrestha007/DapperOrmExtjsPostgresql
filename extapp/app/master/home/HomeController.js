@@ -99,10 +99,11 @@ Ext.define('app.master.home.HomeController', {
         //     scope: me
         // });
     },
-    onSaveButtonClick: function (btn, eOpts) {
+    onSaveButtonClick: function (button, e, eOpts) {
         var me = this;
-        var form = me.getView().query('form')[0];
-        me.saveItem(form, true, true);
+        var wnd = button.up('window');
+        me.getLoadingMask(wnd);
+        me.saveItem(me.getForm(me.getView()));
     },
     saveItem: function (form, closeWindow, callback) {
         debugger;
@@ -141,8 +142,7 @@ Ext.define('app.master.home.HomeController', {
             fn: function (btn) {
                 if (btn === 'yes') {
                     var model = form.getRecord();
-                    model1 = me.createModel();
-                    model = form.updateRecord(model);
+                    model = me.updateModelDataForSave(form, model);
                     // if (!model){
                     //     model = me.createModel(); //this case will come in case of new-record only
                     //     model.set(id, null);
@@ -183,7 +183,7 @@ Ext.define('app.master.home.HomeController', {
                             else {
                                 Ext.Msg.alert({
                                     title: Ext.lang.global.Save_fail,
-                                    message: Myro.Utility.combineAllErrorMsg(resp.errors, resp.validation_errors),
+                                    message: "Server side failure.",
                                     buttonText: {
                                         ok: Ext.lang.global.ok
                                     }
@@ -224,5 +224,38 @@ Ext.define('app.master.home.HomeController', {
         grid.store.loadData([], false);
         grid.setLoading(false);
         // body...
+    },
+    getLoadingMask: function (targetComponent) {
+        var me = this;
+        me.loadingMask = new Ext.LoadMask({
+            msg: "Loading ....",
+            target: targetComponent,
+            baseCls: 'customLoadMask',
+            useMsg: false
+        });
+        me.loadingMask.show();
+    },
+    getForm: function (panel) {
+        var form = panel.query('form');
+        if (form.length > 0) {
+            return form[0];
+        }
+        return form;
+    },
+    updateModelDataForSave: function (form, model) {
+        var me = this;
+        model = form.getRecord();
+        if (!model) {
+            model = me.createModel(); //this case will come in case of new-record only
+            model.set('id', null);
+        }
+        form.updateRecord(model); // update the record with the form data
+        return model;
+    },
+    hideLoadingMask: function () {
+        var me = this;
+        if (me.loadingMask && !Ext.isEmpty(me.loadingMask)) {
+            me.loadingMask.hide();
+        }
     }
 });

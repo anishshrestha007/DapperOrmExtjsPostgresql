@@ -40,7 +40,9 @@ namespace extapp.Custom
 
         public bool InsertCustomer(TestModel ourCustomer)
         {
-            int rowsAffected = this._db.Execute(@"INSERT Customer([CustomerFirstName],[CustomerLastName],[IsActive]) values (@CustomerFirstName, @CustomerLastName, @IsActive)", new { CustomerFirstName = ourCustomer.CustomerFirstName, CustomerLastName = ourCustomer.CustomerLastName, IsActive = true });
+            int rowsAffected = this._db.Execute(@"INSERT into 
+              Customer(CustomerFirstName,CustomerLastName,IsActive) 
+              values (@CustomerFirstName, @CustomerLastName, @IsActive)", new { CustomerFirstName = ourCustomer.CustomerFirstName, CustomerLastName = ourCustomer.CustomerLastName, IsActive = true });
 
             if (rowsAffected > 0)
             {

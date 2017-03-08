@@ -14,7 +14,7 @@ Ext.define('app.master.home.HomeFormWindow', {
     defaultListenerScope: true,
     items: [{
         xtype: 'form',
-        trackResetOnLoad: true, 
+        trackResetOnLoad: true,
         fieldDefaults: {
             combineErrors: true,
             msgTarget: 'side'
@@ -25,7 +25,7 @@ Ext.define('app.master.home.HomeFormWindow', {
             height: 270,
             border: false,
             width: 460,
-            margin :'5 5 5 5',
+            margin: '5 5 5 5',
             layout: {
                 type: 'table',
                 columns: 1
@@ -34,57 +34,41 @@ Ext.define('app.master.home.HomeFormWindow', {
             items: [{
                 xtype: 'hiddenfield',
                 colspan: 2,
-                name: 'id',
+                name: 'CustomerID',
                 margin: '0 0 0 10',
                 bind: {
                     fieldLabel: 'id'
                 }
-            }, {
+            },{
                 xtype: 'textfield',
-                name: 'code',
+                name: 'CustomerFirstName',
+                enableKeyEvents: true,
+                inputmethod: 'nepali',
                 margin: '5 0 5 0',
                 width: 400,
                 /*Validation*/
-                maxLength: 10,
-                maxLengthText: 'The maximum length of code is 5',
-                //maskRe: /[0-9 ,]/,
-                allowBlank: false,
-                cls: 'required-field-label',
-                enforceMaxLength: true,
-                /*Validation*/
-                bind: {
-                    fieldLabel: 'code'
-                }
-            }, {
-                xtype: 'textfield',
-                name: 'name_np',
-                enableKeyEvents: true,
-                inputmethod: 'nepali',
-               margin: '5 0 5 0',
-                width: 400,
-                /*Validation*/
                 allowBlank: false,
                 cls: 'required-field-label',
                 maxLength: 100,
                 enforceMaxLength: true,
                 /*Validation*/
                 bind: {
-                    fieldLabel: 'Name np'
+                    fieldLabel: 'First Name'
                 }
             }, {
                 xtype: 'textfield',
-                name: 'name_en',
-               margin: '5 0 5 0',
+                name: 'CustomerLastName',
+                margin: '5 0 5 0',
                 width: 400,
                 /*Validation*/
                 allowBlank: false,
                 cls: 'required-field-label',
-                componentCls:'english-email-display',
+                componentCls: 'english-email-display',
                 maxLength: 100,
                 enforceMaxLength: true,
                 /*Validation*/
                 bind: {
-                    fieldLabel: 'Name En'
+                    fieldLabel: 'Last Name'
                 }
             }, {
                 xtype: 'textarea',
@@ -94,7 +78,7 @@ Ext.define('app.master.home.HomeFormWindow', {
                 enableKeyEvents: true,
                 inputmethod: 'nepali',
                 width: 400,
-               margin: '5 0 5 0',
+                margin: '5 0 5 0',
                 /*Validation*/
                 maxLength: 500,
                 enforceMaxLength: true,
@@ -103,23 +87,11 @@ Ext.define('app.master.home.HomeFormWindow', {
                 bind: {
                     fieldLabel: 'description'
                 }
-            },{
-                xtype: 'numberfield',
-               margin: '5 0 5 0',
-                bind: {
-                    fieldLabel: 'display order'
-                },
-                name: 'display_order',
-                itemId: 'display_order',
-                minValue:0
             }, {
                 xtype: 'checkbox',
-                name: 'status',
                 checked: true,
-               margin: '5 0 5 0',
-                bind: {
-                    fieldLabel: 'Status'
-                }
+                name: 'IsActive',
+                boxLabel: "Status"          
             }]
         }]
     }],

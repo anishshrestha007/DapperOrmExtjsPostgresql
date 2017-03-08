@@ -25,7 +25,6 @@ namespace extapp.Master
             return "value";
         }
 
-        [Route("Customers")]
         [HttpPost]
         public bool Post([FromBody]TestModel ourCustomer)
         {
