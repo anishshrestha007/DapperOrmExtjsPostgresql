@@ -4,10 +4,15 @@ Ext.lang = {
         "code": "Code",
         "nameen": "Name En",
         "namenp": "Name Np",
-        "status": "Status"
+        "status": "Status",
+        "appname": "AEY SYSTEM",
+        "Save_Msg": "Do you want to save ?",
+        "camcel": "close",
+        "yes": "Yes",
+        "no" : "No"
     },
     "master": {
-        "code": "Cde",
-        "namen": "NameN"
+        "code": "Code",
+        "namen": "NameEn"
     }
 }

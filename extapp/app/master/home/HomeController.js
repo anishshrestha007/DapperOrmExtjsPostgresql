@@ -57,14 +57,17 @@ Ext.define('app.master.home.HomeController', {
     openFormWindow: function (model) {
         var me = this,
             opts = {},
-            wnd = me.createFormWindow(model, opts);
+              pnl = me.getView();
+        wnd = me.createFormWindow(model, opts, pnl);
+          //  wnd = me.createFormWindow(model, opts);
         wnd.show();
     },
-    createFormWindow: function (model, opts) {
+    createFormWindow: function (model, opts,pnl) {
         var me = this;
         var opts = opts || {};
         formOpt = {
-            modal: true
+            modal: true,
+            pnl:pnl
         };
         formOpt.viewModel = {
             data: {
@@ -73,15 +76,16 @@ Ext.define('app.master.home.HomeController', {
         };
         Ext.merge(formOpt, opts);
         formOpt.controller = new app.master.home.HomeController();
+
         return new app.master.home.HomeFormWindow(formOpt);
     },
     onSearchClick: function (btn, eOpts) {
-        var me=this;
-        pnl =this.getView();
-          //pnl.setLoading(true);
+        var me = this;
+        pnl = this.getView();
+        //pnl.setLoading(true);
         grid = pnl.query("#homeGrid")[0];
         grid.store.load();
-            //pnl.setLoading(false);
+        //pnl.setLoading(false);
         // grid.store.load({
         //     // params: {
         //     //     group: 3,
@@ -106,9 +110,9 @@ Ext.define('app.master.home.HomeController', {
         me.saveItem(me.getForm(me.getView()));
     },
     saveItem: function (form, closeWindow, callback) {
-        debugger;
         closeWindow = Ext.isEmpty(closeWindow) ? true : false;
         var me = this;
+        var view = me.getView();
         //validate data
         if (!form.isValid()) {
             // display error alert if the data is invalid
@@ -127,7 +131,6 @@ Ext.define('app.master.home.HomeController', {
             return;
 
         }
-
         //confirm before save
         Ext.Msg.show({
             title: Ext.lang.global.appname,
@@ -135,23 +138,16 @@ Ext.define('app.master.home.HomeController', {
             closeToolText: Ext.lang.global.cancel,
             //buttons: Ext.Msg.YESNO,
             buttonText: {
-                yes: Ext.lang.global.ho,
-                no: Ext.lang.global.hoina
+                yes: Ext.lang.global.yes,
+                no: Ext.lang.global.no
             },
             icon: Ext.Msg.QUESTION,
             fn: function (btn) {
                 if (btn === 'yes') {
                     var model = form.getRecord();
                     model = me.updateModelDataForSave(form, model);
-                    // if (!model){
-                    //     model = me.createModel(); //this case will come in case of new-record only
-                    //     model.set(id, null);
-                    // }
-                    // form.updateRecord(model); // update the record with the form data
-                    //model = me.updateModelDataForSave(form, model);
                     model.save({ // save the record to the server
                         success: function (record, operation) {
-                            // Ext.Msg.alert('Success', 'Data saved successfully.', function(){
                             var resp = Ext.decode(operation._response.responseText);
                             //me.beforeSaveComplete(record, resp);
                             if (Ext.isFunction(callback)) {
@@ -161,12 +157,21 @@ Ext.define('app.master.home.HomeController', {
                             }
                             if (closeWindow) {
                                 var wnd = me.getView();
-
                                 wnd.dataSaved = true;
                                 wnd.closeMe = true;
                                 //wnd.setLoading(false);
                                 me.hideLoadingMask();
                                 wnd.close();
+                                //var MsgBox = Ext.Msg.alert({
+                                //    title: Ext.lang.global.appname,
+                                //    message: "Data saved Sucessfully. Bitch !!!",
+                                //    buttonText: {
+                                //        ok: 'OK'
+                                //    }
+                                //});
+                                //setTimeout(function () {
+                                //    MsgBox.close();
+                                //}, 2000);
                             }
                         },
                         failure: function (record, message) {
@@ -190,8 +195,13 @@ Ext.define('app.master.home.HomeController', {
                                 });
                             }
                             me.hideLoadingMask();
+                        },
+                        callback: function (record, operation, success) {
+                            if (success) {
+                                formOpt.pnl.query("#homeGrid")[0].store.reload();
+                            }
                         }
-                    });
+                    }, me);
                 } else if (btn === 'no') {
                     if (Ext.isFunction(callback)) {
                         callback({
@@ -211,7 +221,6 @@ Ext.define('app.master.home.HomeController', {
                 }
             }
         });
-        //
     },
     onCloseButtonClick: function (btn, eOpts) {
         win = btn.up('window');

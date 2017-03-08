@@ -15,7 +15,6 @@ Ext.define('app.master.home.HomeListPanel', {
 		align: 'stretch'
 	},
 	viewModel: 'mainviewmodel',
-	height: 570,
 	items: [{
 		xtype: 'form',
 		itemId: 'search-form',
@@ -124,40 +123,28 @@ Ext.define('app.master.home.HomeListPanel', {
 		},
 		columns: [{
 		    dataIndex: 'CustomerID',
-			width: 80,
+		    flex: 0.5,
 			bind: {
-				text: 'sn'
+				text: 'Customer ID'
 			}
 		}, {
 		    dataIndex: 'CustomerFirstName',
 			flex: 1,
-			// align: 'center',
 			bind: {
-				text: 'code'
+				text: 'First Name'
 			}
 		}, {
 		    dataIndex: 'CustomerLastName',
 			flex: 1,
-			// align: 'center',
 			bind: {
-				text: 'Nameen'
+			    text: 'Last Name'
 			}
 		}, {
 		    dataIndex: 'IsActive',
-			flex: 1,
-			// align: 'center',
+			flex: 0.3,
 			bind: {
-				text: 'NameNP'
+				text: 'Status'
 			}
-		}, {
-			xtype: 'gridcolumn',
-			dataIndex: 'desc',
-			flex: 1,
-			//align: 'center',
-			bind: {
-				text: 'description'
-			}
-
 		}],
 		dockedItems: [{
 			xtype: 'toolbar',
