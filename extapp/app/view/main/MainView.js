@@ -7,9 +7,7 @@ Ext.define('app.view.main.MainView', {
         'app.view.main.MainViewModel'
 
     ],
-    width: 300,
-    height: 450,
-    title: 'TreeList',
+    title: 'Gera Gaun',
     controller: 'mainViewController',
     iconCls: 'fa fa-gears',
     layout: 'border',
@@ -66,6 +64,7 @@ Ext.define('app.view.main.MainView', {
         region: 'center',
         bodyPadding: 5,
         itemId: 'mainContent',
+        layout: 'fit',
         bind: {
             html: '{selectionText}'
         }

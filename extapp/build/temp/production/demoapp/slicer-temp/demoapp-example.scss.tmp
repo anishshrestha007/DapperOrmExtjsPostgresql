@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'demoapp' );
-$image-search-path: 'C:/xampp/htdocs/demoapp/build/production/demoapp/classic/resources';
+$image-search-path: 'E:/DapperOrmExtjsPostgresql/extapp/build/production/demoapp/resources';
 $theme-name:  dynamic( 'theme-triton' );
 $include-ext-abstractcomponent: dynamic(true);;
 $include-ext-abstractcontainer: dynamic(true);;
@@ -887,8 +887,6 @@ $include-app-view-main-menu-master-general: dynamic(true);;
 $include-app-viewmodel-mainviewmodel: dynamic(true);;
 $include-demoapp-application: dynamic(true);;
 $include-demoapp-store-personnel: dynamic(true);;
-$include-demoapp-view-main-list: dynamic(true);;
-$include-demoapp-view-main-main: dynamic(true);;
 $include-demoapp-view-main-maincontroller: dynamic(true);;
 $include-demoapp-view-main-mainmodel: dynamic(true);;
 
@@ -1339,11 +1337,3 @@ $relative-image-path-for-uis: $theme-triton-resource-path;
 @import '../../../../../ext/classic/theme-triton/sass/src/tab/Tab';
 @import '../../../../../ext/classic/theme-triton/sass/src/tree/View';
 @import '../../../../../ext/classic/theme-triton/sass/src/window/Toast';
-
-/* including package demoapp */
-$demoapp-resource-root: '' !default;
-$demoapp-resource-path: 'images' !default;
-$current-package: false;
-$current-resource-root: $demoapp-resource-root;
-$relative-image-path-for-uis: $demoapp-resource-path;
-@import '../../../../../classic/sass/src/view/main/Main';

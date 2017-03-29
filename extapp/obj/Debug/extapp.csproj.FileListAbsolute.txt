@@ -157,11 +157,11 @@ C:\Users\Lenovo-PC\Desktop\extapp\extapp\obj\Debug\extapp.dll
 C:\Users\Lenovo-PC\Desktop\extapp\extapp\obj\Debug\extapp.pdb
 C:\Users\Lenovo-PC\Desktop\extapp\extapp\bin\Dapper.dll
 C:\Users\Lenovo-PC\Desktop\extapp\extapp\bin\Dapper.xml
+E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\csc.exe
 E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\Microsoft.CodeAnalysis.dll
-E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\Microsoft.CSharp.Core.targets
 E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\Microsoft.VisualBasic.Core.targets
 E:\DapperOrmExtjsPostgresql\extapp\bin\roslyn\System.Collections.Immutable.dll
@@ -206,7 +206,6 @@ E:\DapperOrmExtjsPostgresql\extapp\bin\System.Web.WebPages.Razor.dll
 E:\DapperOrmExtjsPostgresql\extapp\bin\WebGrease.dll
 E:\DapperOrmExtjsPostgresql\extapp\bin\Dapper.xml
 E:\DapperOrmExtjsPostgresql\extapp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\DapperOrmExtjsPostgresql\extapp\bin\Npgsql.xml
 E:\DapperOrmExtjsPostgresql\extapp\bin\Newtonsoft.Json.xml
 E:\DapperOrmExtjsPostgresql\extapp\bin\System.Net.Http.Formatting.xml
 E:\DapperOrmExtjsPostgresql\extapp\bin\System.Web.Helpers.xml
@@ -234,6 +233,5 @@ E:\DapperOrmExtjsPostgresql\extapp\bin\Microsoft.Owin.Security.Google.xml
 E:\DapperOrmExtjsPostgresql\extapp\bin\Microsoft.Owin.Security.Twitter.xml
 E:\DapperOrmExtjsPostgresql\extapp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\DapperOrmExtjsPostgresql\extapp\bin\System.Web.Http.Owin.xml
-E:\DapperOrmExtjsPostgresql\extapp\obj\Debug\extapp.csprojResolveAssemblyReference.cache
 E:\DapperOrmExtjsPostgresql\extapp\obj\Debug\extapp.dll
 E:\DapperOrmExtjsPostgresql\extapp\obj\Debug\extapp.pdb

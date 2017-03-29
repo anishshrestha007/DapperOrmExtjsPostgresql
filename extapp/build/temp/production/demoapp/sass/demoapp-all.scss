@@ -1,5 +1,5 @@
 $app-name:  dynamic( 'demoapp' );
-$image-search-path: 'C:/xampp/htdocs/demoapp/build/production/demoapp/classic/resources';
+$image-search-path: 'E:/DapperOrmExtjsPostgresql/extapp/build/production/demoapp/resources';
 $theme-name:  dynamic( 'theme-triton' );
 $include-ext-abstractcomponent: dynamic(true);;
 $include-ext-abstractcontainer: dynamic(true);;
@@ -887,8 +887,6 @@ $include-app-view-main-menu-master-general: dynamic(true);;
 $include-app-viewmodel-mainviewmodel: dynamic(false);;
 $include-demoapp-application: dynamic(true);;
 $include-demoapp-store-personnel: dynamic(false);;
-$include-demoapp-view-main-list: dynamic(false);;
-$include-demoapp-view-main-main: dynamic(false);;
 $include-demoapp-view-main-maincontroller: dynamic(false);;
 $include-demoapp-view-main-mainmodel: dynamic(false);;
 

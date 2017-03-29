@@ -1,174 +1,166 @@
 Ext.define('app.master.home.HomeListPanel', {
-	extend: 'Ext.panel.Panel',
-	alias: 'widget.homeListPanel',
-	xtype: 'homeListPanel',
-	itemId: 'homeListPanel',
-	requires: [
-		'app.master.home.HomeController',
-		'app.master.home.HomeFormWindow',
-		'app.master.home.HomeStore',
-		'app.viewmodel.MainViewModel'
-	],
-	controller: 'HomeController',
-	layout: {
-		type: 'vbox',
-		align: 'stretch'
-	},
-	viewModel: 'mainviewmodel',
-	items: [{
-		xtype: 'form',
-		itemId: 'search-form',
-		submitEmptyText: false,
-		frame: true,
-		collapsible: true,
-		titleCollapse: true,
-		title: 'Home',
-		items: [{
-			xtype: 'fieldset',
-			bodyPadding: 10,
-			border: false,
-			layout: {
-				type: 'hbox'
-			},
-			items: [{
-				xtype: 'textfield',
-				bind: {
-					fieldLabel: '{lang.master.code}'
-				},
-				margin: '0 20 0 0',
-				name: 'code',
-				cls: 'erp-label-color',
-				labelWidth: 40,
-				labelStyle: 'padding-top:5px;',
-				maxLength: 10,
-				enforceMaxLength: true,
-				itemId: 'org_staff_code',
-				flex: 2
-			}, {
-				xtype: 'combo',
-				bind: {
-					fieldLabel: '{lang.global.nameen}'
-				},
-				cls: 'erp-label-color',
-				margin: '0 20 0 0',
-				name: 'user_id',
-				displayField: 'text',
-				valueField: 'id',
-				editable: true,
-				itemId: 'user_id',
-				//labelWidth: 50,
-				labelStyle: 'padding-top:5px;'
-			}, {
-				xtype: 'textfield',
-				bind: {
-					fieldLabel: '{lang.global.namenp}'
-				},
-				cls: 'erp-label-color',
-				labelStyle: 'padding-top:5px;',
-				margin: '0 20 0 0',
-				name: 'name___multi',
-				itemId: 'org_staff_name',
-				matchFieldWidth: false
-			}, {
-				xtype: 'combo',
-				padding: '0 20 2 0',
-				labelWidth: 40,
-				cls: 'erp-label-color',
-				labelStyle: 'padding-top:5px;',
-				//width: 225,
-				name: 'status',
-				labelAlign: 'left',
-				itemId: 'status',
-				// emptyText: 'Select Status',
-				displayField: 'name',
-				valueField: 'value',
-				queryMode: 'local',
-				bind: {
-					fieldLabel: '{lang.global.status}'
-				}
-			}, {
-				xtype: 'button',
-				bind: {
-					text: 'search'
-				},
-				itemId: 'search-button',
-				iconCls: 'fa fa-search fa-1x',
-				margin: '0px 0px 0px 10px',
-				cls: 'btn-search',
-				width: 95
-			}, {
-				xtype: 'button',
-				width: 95,
-				bind: {
-					text: 'reset'
-				},
-				itemId: 'reset_button',
-				iconCls: 'fa fa-ban fa-1x',
-				margin: '0px 0px 0px 10px',
-				cls: 'btn-reset'
-			}, {
-				xtype: 'hiddenfield',
-				name: 'reportTitle',
-				value: 'TIA Staff List'
-			}]
-		}]
-	}, {
-		xtype: 'grid',
-		layout: 'fit',
-		itemId: 'homeGrid',
-		flex: 1,
-		frame: true,
-		store: {
-			type: 'homeStore'
-		},
-		columns: [{
-		    dataIndex: 'CustomerID',
-		    flex: 0.5,
-			bind: {
-				text: 'Customer ID'
-			}
-		}, {
-		    dataIndex: 'CustomerFirstName',
-			flex: 1,
-			bind: {
-				text: 'First Name'
-			}
-		}, {
-		    dataIndex: 'CustomerLastName',
-			flex: 1,
-			bind: {
-			    text: 'Last Name'
-			}
-		}, {
-		    dataIndex: 'IsActive',
-			flex: 0.3,
-			bind: {
-				text: 'Status'
-			}
-		}],
-		dockedItems: [{
-			xtype: 'toolbar',
-			dock: 'top',
-			items: [{
-				xtype: 'button',
-				itemId: 'newbutton',
-				cls: 'btn-create',
-				margin: '0 2 0 0',
-				iconCls: 'fa fa-plus-circle fa-1x',
-				right_key_code: 'new',
-				bind: {
-					text: 'new'
-				}
-			}, {
-				xtype: "button",
-				itemId: 'reload-button',
-				cls: 'btn-reload',
-				margin: '0 2 0 0',
-				iconCls: 'fa fa-refresh fa-1x',
-				bind: {
-					text: 'relaod'
-				}
-			}]
-		}]
-	}]
-})
+    extend: 'Ext.grid.Panel',
+    alias: 'widget.homeListPanel',
+    xtype: 'homeListPanel',
+    itemId: 'homeListPanel',
+    requires: [
+        'Ext.grid.filters.Filters'
+    ],
+    title: 'Reckons',
+    columnLines: true,
+    frame: true,
+    iconCls: 'framing-buttons-grid',
+    //store: 'Companies',
+    viewModel: true,
+    multiColumnSort: true,
+    features: [{
+        ftype: 'groupingsummary',
+        groupHeaderTpl: '{name}',
+        hideGroupedHeader: false,
+        enableGroupingMenu: false
+    }, {
+        ftype: 'summary',
+        dock: 'bottom'
+    }],
+    layout: 'border',
+    split: true,
+    buttonAlign: 'center',
+    bind: {
+        selection: '{theRow}'
+    },
+
+    selModel: {
+        type: 'checkboxmodel'
+    },
+
+    columns: [{
+            text: 'Id',
+            sortable: true,
+            dataIndex: 'employeeNo',
+            groupable: false,
+            width: 80,
+            locked: true,
+            editRenderer: 'bold'
+        }, {
+            text: "Company(Filter)",
+            dataIndex: 'name',
+            width: 140,
+            sortable: true,
+            layout: 'hbox',
+            locked: true,
+            editor: {
+                xtype: 'textfield'
+            },
+            items: {
+                xtype: 'textfield',
+                reference: 'nameFilterField',
+                margin: 2,
+            }
+        }, {
+            text: "Address",
+            dataIndex: 'price',
+
+            width: 120,
+            sortable: true,
+            formatter: 'usMoney'
+        }, {
+            text: 'Contact Info',
+            shrinkWrap: true,
+            columns: [{
+                text: 'Moble No',
+                dataIndex: 'mobile_no',
+                width: 100,
+                groupable: false,
+                summaryType: 'sum',
+                filter: {
+
+                },
+                editor: {
+                    xtype: 'numberfield',
+                    decimalPrecision: 0
+                }
+            }, {
+                text: 'Name',
+                dataIndex: 'name',
+                width: null, // Size column to title text
+                groupable: false,
+                summaryType: 'sum',
+                summaryFormatter: 'number("0")',
+                filter: {
+
+                },
+                editor: {
+                    xtype: 'textfield',
+                }
+            }, {
+                text: 'Date Of Sub',
+                dataIndex: 'dobsubm',
+                width: null, // Size column to title text
+                groupable: false,
+                filter: {
+
+                },
+                editor: {
+                    xtype: 'numberfield',
+                }
+            }]
+        },
+
+        {
+            text: "Fax No",
+            dataIndex: 'change',
+
+            width: 120,
+            sortable: true
+        }, {
+            text: "Pan No",
+            dataIndex: 'pctChange',
+
+            width: 120,
+            sortable: true
+        }, {
+            text: "Last Updated",
+            dataIndex: 'lastChange',
+
+            width: 120,
+            sortable: true,
+            formatter: 'date("m/d/Y")'
+        },
+
+    ],
+    plugins: [{
+        ptype: 'gridfilters'
+    }, {
+        ptype: 'rowexpander',
+
+        // dblclick invokes the row editor
+        expandOnDblClick: false,
+        rowBodyTpl: '<img src="{avatar}" height="100px" style="float:left;margin:0 10px 5px 0"><b>{name}<br></b>{dob:date}'
+    }],
+    tbar: [{
+        text: 'Add Something',
+        tooltip: 'Add a new row',
+        iconCls: 'framing-buttons-add'
+    }, '-', {
+        text: 'Options',
+        tooltip: 'Set options',
+        iconCls: 'framing-buttons-option'
+    }, '-', {
+        text: 'Remove Something',
+        tooltip: 'Remove the selected item',
+        iconCls: 'framing-buttons-remove',
+        disabled: true,
+
+        bind: {
+            disabled: '{!theRow}'
+        }
+    }],
+
+    fbar: [{
+        minWidth: 80,
+        text: 'Save'
+    }, {
+        minWidth: 80,
+        text: 'Cancel'
+    }]
+});
